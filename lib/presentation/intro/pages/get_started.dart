@@ -4,6 +4,7 @@ import 'package:spotify/common/widgets/button/basic_app_button.dart';
 import 'package:spotify/core/configs/assets/app_images.dart';
 import 'package:spotify/core/configs/assets/app_vectors.dart';
 import 'package:spotify/core/configs/theme/app_colors.dart';
+import 'package:spotify/presentation/choose_mode/pages/choose_mode.dart';
 
 class GetStartedPages extends StatelessWidget {
   const GetStartedPages({super.key});
@@ -19,11 +20,22 @@ class GetStartedPages extends StatelessWidget {
               horizontal: 40,
             ),
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(
-                      AppImages.introBG,
-                    ))),
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage(
+                  AppImages.introBG,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.15),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 40,
+              horizontal: 40,
+            ),
             child: Column(
               children: [
                 Align(
@@ -54,18 +66,23 @@ class GetStartedPages extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 BasicAppButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const ChooseModePages(),
+                      ),
+                    );
+                  },
                   title: 'Bắt đầu',
                 ),
               ],
             ),
           ),
-          Container(
-            color: Colors.black.withOpacity(0.15),
-          )
         ],
       ),
     );
