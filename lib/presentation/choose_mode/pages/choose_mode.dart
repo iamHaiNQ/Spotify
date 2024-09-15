@@ -7,10 +7,21 @@ import 'package:spotify/common/widgets/button/basic_app_button.dart';
 import 'package:spotify/core/configs/assets/app_images.dart';
 import 'package:spotify/core/configs/assets/app_vectors.dart';
 import 'package:spotify/core/configs/theme/app_colors.dart';
+import 'package:spotify/presentation/auth/pages/signup_or_signin.dart';
 import 'package:spotify/presentation/choose_mode/bloc/theme_cubit.dart';
 
-class ChooseModePages extends StatelessWidget {
+
+
+class ChooseModePages extends StatefulWidget {
   const ChooseModePages({super.key});
+
+  @override
+  _ChooseModePagesState createState() => _ChooseModePagesState();
+}
+
+class _ChooseModePagesState extends State<ChooseModePages> {
+  // Variable to store selected mode
+  ThemeMode _selectedMode = ThemeMode.light;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +76,10 @@ class ChooseModePages extends StatelessWidget {
                     Column(
                       children: [
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
+                            setState(() {
+                              _selectedMode = ThemeMode.dark;
+                            });
                             context.read<ThemeCubit>().updateTheme(ThemeMode.dark);
                           },
                           child: ClipOval(
@@ -75,7 +89,9 @@ class ChooseModePages extends StatelessWidget {
                                 height: 70,
                                 width: 70,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xff30393c).withOpacity(0.5),
+                                  color: _selectedMode == ThemeMode.dark
+                                      ? Colors.black
+                                      : const Color(0xff30393c).withOpacity(0.5),
                                   shape: BoxShape.circle,
                                 ),
                                 child: SvgPicture.asset(
@@ -96,7 +112,7 @@ class ChooseModePages extends StatelessWidget {
                             fontSize: 17,
                             color: AppColors.grey,
                           ),
-                        )
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -105,7 +121,10 @@ class ChooseModePages extends StatelessWidget {
                     Column(
                       children: [
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
+                            setState(() {
+                              _selectedMode = ThemeMode.light;
+                            });
                             context.read<ThemeCubit>().updateTheme(ThemeMode.light);
                           },
                           child: ClipOval(
@@ -115,7 +134,9 @@ class ChooseModePages extends StatelessWidget {
                                 height: 70,
                                 width: 70,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xff30393c).withOpacity(0.5),
+                                  color: _selectedMode == ThemeMode.light
+                                      ? Color(0xff87CEFA)
+                                      : const Color(0xff30393c).withOpacity(0.5),
                                   shape: BoxShape.circle,
                                 ),
                                 child: SvgPicture.asset(
@@ -136,7 +157,7 @@ class ChooseModePages extends StatelessWidget {
                             fontSize: 17,
                             color: AppColors.grey,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],
@@ -150,7 +171,7 @@ class ChooseModePages extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) =>
-                        const ChooseModePages(),
+                        const SignUpOrSignInPages(),
                       ),
                     );
                   },

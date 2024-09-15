@@ -28,13 +28,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => ThemeCubit())
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
-        builder: (context, mode) => MaterialApp(
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: mode,
-          debugShowCheckedModeBanner: false,
-          home: const SplashPages(),
-        ),
+        builder: (context, mode) {
+          print("Current Theme Mode: $mode");
+          return MaterialApp(
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: mode,
+            debugShowCheckedModeBanner: false,
+            home: const SplashPages(),
+          );
+        },
       ),
     );
   }
