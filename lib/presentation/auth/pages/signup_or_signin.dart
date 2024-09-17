@@ -5,6 +5,8 @@ import 'package:spotify/common/widgets/appbar/app_bar.dart';
 import 'package:spotify/common/widgets/button/basic_app_button.dart';
 import 'package:spotify/core/configs/assets/app_vectors.dart';
 import 'package:spotify/core/configs/theme/app_colors.dart';
+import 'package:spotify/presentation/auth/pages/signin.dart';
+import 'package:spotify/presentation/auth/pages/signup.dart';
 
 class SignUpOrSignInPages extends StatelessWidget {
   const SignUpOrSignInPages({super.key});
@@ -14,7 +16,7 @@ class SignUpOrSignInPages extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const BassicAppBar(),
+          const BasicAppBar(),
           //add ảnh or svg backgroud
           Align(
               alignment: Alignment.center,
@@ -47,7 +49,9 @@ class SignUpOrSignInPages extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
-                          color: context.isDarkMode ? AppColors.darkGrey : AppColors.grey),
+                          color: context.isDarkMode
+                              ? AppColors.grey
+                              : AppColors.darkGrey),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -58,7 +62,15 @@ class SignUpOrSignInPages extends StatelessWidget {
                         Expanded(
                           flex: 1,
                           child: BasicAppButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const SignUpPage(),
+                                ),
+                              );
+                            },
                             title: 'Đăng kí',
                           ),
                         ),
@@ -68,13 +80,23 @@ class SignUpOrSignInPages extends StatelessWidget {
                         Expanded(
                           flex: 1,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const SignInPage(),
+                                ),
+                              );
+                            },
                             child: Text(
                               'Đăng nhập',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 19,
-                                color: context.isDarkMode ? Colors.white : Colors.black,
+                                color: context.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
                               ),
                             ),
                           ),
